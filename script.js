@@ -10,11 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        if (isOnTheSameStreet(departure, destination)) {
-            return Math.abs(departure[0] - destination[0]) + Math.abs(departure[1] - destination[1]);
-        }
-
-        if (isOnTheSameSector(departure, destination)) {
+        if (isOnTheSameSector(departure, destination) && !isOnTheSameStreet(departure, destination)) {
             if (Math.ceil(departure[0]) == Math.ceil(destination[0])) {
                 return shorterWay(departure[0], destination[0]) + Math.abs(departure[1] - destination[1]);
             } 
