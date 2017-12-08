@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Coordinates of departure and destination places and the shortest way
-    var departure = [0.4, 1];
-    var destination = [0.9, 3];
+    var departure = [2, 0.4];
+    var destination = [0, 0.4];
     var shortestWay;
 
     // Find the length of the shortest route 
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isOnTheSameSector(departure, destination) && !isOnTheSameStreet(departure, destination)) {
             if (Math.ceil(departure[0]) == Math.ceil(destination[0])) {
                 return shorterWay(departure[0], destination[0]) + Math.abs(departure[1] - destination[1]);
-            } 
+            }
 
             return Math.abs(departure[0] - destination[0]) + shorterWay(departure[1], destination[1]);
         }
@@ -37,8 +37,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Check if the departure point is on the same street with the destination point
     function isOnTheSameStreet(departure, destination) {
-        if ((departure[0] == destination[0]) || (departure[1] == destination[1])) {
-            return true;
+        for (var i = 0; i < 2; i++) {
+            if (Number.isInteger(departure[i]) && Number.isInteger(destination[i])) {
+                if (departure[i] == destination[i]) {
+                    console.log('here');
+                    return true;
+                }
+                return false;
+            }
         }
         return false;
     }
