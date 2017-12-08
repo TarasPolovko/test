@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Coordinates of departure and destination places and the shortest way
     var departure = [0.4, 1];
-    var destination = [0.5, 1];
+    var destination = [0.9, 3];
     var shortestWay;
 
     // Find the length of the shortest route 
@@ -64,5 +64,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     shortestWay = perfectCity(departure, destination);
-    console.log(shortestWay ? shortestWay.toFixed(2) : "Wrong conditions");
+    console.log(shortestWay ? +shortestWay.toFixed(2) : "Wrong conditions");
 });
