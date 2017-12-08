@@ -1,0 +1,71 @@
+document.addEventListener('DOMContentLoaded', function() {
+
+    // Coordinates of departure and destination places and the shortest way
+    var departure = [0.4, 1];
+    var destination = [0.5, 1];
+    var shortestWay;
+
+    function rangeChecking(element, index, array) {
+        return (element < 0) || (element > 10);
+    }
+
+    function intChecking(element, index, array) {
+        return Number.isInteger(element);
+    }
+
+    function conditionsChecking() {
+        // check if the range is correct
+        if (departure.some(rangeChecking) || destination.some(rangeChecking)) {
+            alert("Wrong coordinates! It should be between 0 and 10.");
+            return false;
+        }
+
+        // check if there's at least one integer in array
+        if (!departure.some(intChecking) || !destination.some(intChecking)) {
+            alert("Wrong departure or destination coordinates. There's no integer!");
+            return false;
+        }
+
+        return true;
+    }
+
+    // Find the length of the shortest route 
+    function perfectCity(departure, destination) {
+        if (!conditionsChecking()) {
+            return;
+        }
+
+        var horizontalWay = isOnTheSameSector(departure[0], destination[0]);
+        var verticalWay = isOnTheSameSector(departure[1], destination[1]);
+
+        return Math.round((horizontalWay + verticalWay) * 100) / 100;
+    }
+
+    // Check if the coordinates are in the same sector
+    function isOnTheSameSector(coordinateOne, coordinateTwo) {
+        if (!Number.isInteger(coordinateOne) && !Number.isInteger(coordinateTwo)) {
+
+            if (Math.ceil(coordinateOne) == Math.ceil(coordinateTwo)) {
+                return whichWay(coordinateOne, coordinateTwo);
+            } else {
+                return Math.abs(coordinateOne - coordinateTwo);
+            }
+
+        } else {
+            return Math.abs(coordinateOne - coordinateTwo);
+        }
+    }
+
+    // Find the shortest way for same sector coordinates
+    function whichWay(a1, a2) {
+        var oneWay = (Math.ceil(a1) - a1) + (Math.ceil(a2) - a2);
+        var anotherWay = a1 + a2;
+        var way = (oneWay < anotherWay) ? oneWay : anotherWay;
+
+        return way;
+    }
+
+    shortestWay = perfectCity(departure, destination);
+    console.log(shortestWay);
+
+});
