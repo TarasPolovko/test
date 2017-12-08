@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Coordinates of departure and destination places and the shortest way
-    var departure = [2, 0.4];
-    var destination = [0, 0.4];
+    var departure = [0.4, 1];
+    var destination = [0.9, 3];
     var shortestWay;
 
     // Find the length of the shortest route 
@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
         for (var i = 0; i < 2; i++) {
             if (Number.isInteger(departure[i]) && Number.isInteger(destination[i])) {
                 if (departure[i] == destination[i]) {
-                    console.log('here');
                     return true;
                 }
                 return false;
@@ -70,5 +69,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     shortestWay = perfectCity(departure, destination);
-    console.log(shortestWay ? +shortestWay.toFixed(2) : "Wrong conditions");
+    console.log(shortestWay >= 0 ? +shortestWay.toFixed(2) : "Wrong conditions");
 });
